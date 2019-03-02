@@ -1,0 +1,21 @@
+service: example-lambda-layers
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-west-2
+
+package:
+  exclude:
+    - your-lambda-layer/**
+
+functions:
+  hello:
+    handler: handler.hello
+    layers:
+      - { Ref: YourlayernameLambdaLayer }
+
+layers:
+  yourlayername:
+    path: your-lambda-layer
